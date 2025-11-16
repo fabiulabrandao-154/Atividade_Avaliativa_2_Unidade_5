@@ -1,12 +1,62 @@
-# React + Vite
+# 📝 Atividade Avaliativa – Unidade 5  
+## ReactJS – CRUD Pessoas (PF e PJ) com Datas
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Repositório da solução:  
+👉 https://github.com/fabiulabrandao-154/Atividade_Avaliativa_2_Unidade_5
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🎯 Objetivo da Atividade
 
-## Expanding the ESLint configuration
+Implementar a gravação, edição, listagem e exclusão das seguintes datas:
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- **Pessoa Física (PF):** data de nascimento  
+- **Pessoa Jurídica (PJ):** data de registro  
+
+As informações devem ser gerenciadas pelo CRUD e armazenadas **localmente** via `localStorage`.
+
+---
+
+## ✔️ O que foi desenvolvido
+
+### **Pessoa Física (PF)**
+- Adicionado o campo **dataNascimento** no formulário.
+- A classe `PF` foi ajustada para incluir esse atributo.
+- O DAO `PFDAOLocalV2.mjs` foi configurado para salvar e recuperar essa data.
+- Na listagem, quando o filtro está em *PF*, a coluna **Data Nascimento** é exibida corretamente.
+
+### **Pessoa Jurídica (PJ)**
+- Adicionado o campo **dataRegistro** no formulário.
+- A classe `PJ` foi atualizada com o atributo de data.
+- O DAO `PJDAOLocalV2.mjs` salva e recupera o valor no `localStorage`.
+- Na listagem, quando o filtro está em *PJ*, aparece a coluna **Data Registro**.
+
+### **Listagem**
+- O nome da coluna muda automaticamente:
+  - PF → **Data Nascimento**  
+  - PJ → **Data Registro**
+- A tela carrega e exibe o valor correto de acordo com o tipo.
+
+### **App.jsx**
+- Nenhuma lógica adicional foi necessária.  
+- Apenas confirmado que o projeto utiliza o conjunto de rotas da versão V2, conforme orientações.
+
+---
+
+## 📂 Arquivos principais modificados
+
+- `src/classes/PF.js`  
+- `src/classes/PJ.js`  
+- `src/dao/PFDAOLocalV2.mjs`  
+- `src/dao/PJDAOLocalV2.mjs`  
+- `src/pages/PessoaFormOOV2.jsx`  
+- `src/pages/ListaPessoasV2.jsx`  
+
+---
+
+## ▶️ Como executar o projeto
+
+```bash
+npm install
+npm run dev
+
