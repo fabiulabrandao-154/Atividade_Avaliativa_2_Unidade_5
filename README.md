@@ -45,12 +45,12 @@ As informações devem ser gerenciadas pelo CRUD e armazenadas **localmente** vi
 
 ## 📂 Arquivos principais modificados
 
-- `src/classes/PF.js`  
-- `src/classes/PJ.js`  
-- `src/dao/PFDAOLocalV2.mjs`  
-- `src/dao/PJDAOLocalV2.mjs`  
-- `src/pages/PessoaFormOOV2.jsx`  
-- `src/pages/ListaPessoasV2.jsx`  
+- `src/objetos/pessoas/PF.mjs`  
+- `src/objetos/pessoas/PJ.mjs`  
+- `src/objetos/dao/PFDAOLocalV2.mjs`  
+- `src/objetos/dao/PJDAOLocalV2.mjs`  
+- `src/componentes/cadastrapessoa/PessoaFormOOV2.jsx`  
+- `src/componentes/listapessoas/ListaPessoasV2.jsx`  
 
 ---
 
