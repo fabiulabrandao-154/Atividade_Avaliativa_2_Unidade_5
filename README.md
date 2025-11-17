@@ -50,7 +50,9 @@ As informações devem ser gerenciadas pelo CRUD e armazenadas **localmente** vi
 - `src/objetos/dao/PFDAOLocalV2.mjs`  
 - `src/objetos/dao/PJDAOLocalV2.mjs`  
 - `src/componentes/cadastrapessoa/PessoaFormOOV2.jsx`  
-- `src/componentes/listapessoas/ListaPessoasV2.jsx`  
+- `src/componentes/listapessoas/ListaPessoasV2.jsx`
+- `src/componentes/visualizapessoa/VisualizaPessoasV2.jsx`
+  
 
 ---
 
