@@ -103,7 +103,7 @@ export default function VisualizaPessoa() {
             <>
               <Descriptions.Item label="Inscrição Estadual">
                 {pessoa.ie?.numero
-                  ? `Nº ${pessoa.ie.numero} - ${pessoa.ie.estado} (${pessoa.ie.dataRegistro})`
+                  ? `Nº ${pessoa.ie.numero} - ${pessoa.ie.estado}
                   : "Não informado"}
               </Descriptions.Item>
             </>
@@ -123,4 +123,5 @@ export default function VisualizaPessoa() {
       </Card>
     </div>
   );
+
 }
