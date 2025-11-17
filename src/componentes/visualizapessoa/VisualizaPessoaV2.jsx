@@ -68,9 +68,7 @@ export default function VisualizaPessoa() {
 
               {/* 🔹 Data de Registro da PJ */}
               <Descriptions.Item label="Data de Registro">
-              {pessoa.ie?.numero
-                  ? `Nº ${pessoa.ie.numero} - ${pessoa.ie.estado} (${pessoa.ie.dataRegistro})`
-                  : "Não informado"}
+              {pessoa.ie.dataRegistro}
               </Descriptions.Item>
             </>
           )}
