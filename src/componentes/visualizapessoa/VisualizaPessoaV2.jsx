@@ -57,7 +57,7 @@ export default function VisualizaPessoa() {
             <Descriptions.Item label="CNPJ">{pessoa.cnpj}</Descriptions.Item>
           )}
           {(
-            <Descriptions.Item label="Data de Nascimento">{pessoa.cnpj}</Descriptions.Item>
+            <Descriptions.Item label="Data de Nascimento">{pessoa.DatadeNascimento}</Descriptions.Item>
           )}
 
           {/* Endereço */}
