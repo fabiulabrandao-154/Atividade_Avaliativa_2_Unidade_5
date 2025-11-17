@@ -49,11 +49,29 @@ export default function ListaPessoas() {
       dataIndex: "email",
       key: "email",
     },
+  
+    // 🔹 EXIBE SOMENTE PARA PESSOA FÍSICA
+    ...(tipo === "PF"
+      ? [
+          {
+            title: "Data de Nascimento",
+            dataIndex: "dataNascimento",
+            key: "dataNascimento",
+            width: 180,
+            render: (data) =>
+              data ? new Date(data).toLocaleDateString("pt-BR") : "-",
+          },
+        ]
+      : []),
+  
+    // 🔹 NOVA COLUNA — EXIBE PARA PF E PJ
     {
-      title: tipo === "PF" ? "CPF" : "CNPJ",
-      dataIndex: tipo === "PF" ? "cpf" : "cnpj",
-      key: "doc",
-      width: 200,
+      title: "Data de Registro",
+      dataIndex: "dataRegistro",
+      key: "dataRegistro",
+      width: 180,
+      render: (data) =>
+        data ? new Date(data).toLocaleDateString("pt-BR") : "-",
     },
     {
       title: "Ações",
