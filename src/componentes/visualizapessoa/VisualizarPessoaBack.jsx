@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Card, Descriptions, Button } from "antd";
+import { Card, Descriptions, Button, Spin } from "antd";
 import { useParams, useNavigate } from "react-router-dom";
 import PFDAO from "../../objetos/dao/PFDAOBackEnd.mjs";
 import PJDAO from "../../objetos/dao/PJDAOBackEnd.mjs";
@@ -9,15 +9,34 @@ export default function VisualizaPessoa() {
   const navigate = useNavigate();
 
   const [pessoa, setPessoa] = useState(null);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const dao = tipo === "PF" ? new PFDAO() : new PJDAO();
-    const lista = dao.listar();
+    async function carregar() {
+      setLoading(true);
 
-    // 🔹 Busca unificada pelo ID
-    const encontrada = lista.find((p) => p.id === id);
-    if (encontrada) setPessoa(encontrada);
+      const dao = tipo === "PF" ? new PFDAO() : new PJDAO();
+
+      // 🔹 Aguarda carregar do back-end
+      await dao.carregarLista();
+
+      const lista = dao.listar();
+      const encontrada = lista.find((p) => p.id === id);
+
+      setPessoa(encontrada ?? null);
+      setLoading(false);
+    }
+
+    carregar();
   }, [tipo, id]);
+
+  if (loading) {
+    return (
+      <div style={{ textAlign: "center", marginTop: 50 }}>
+        <Spin size="large" />
+      </div>
+    );
+  }
 
   if (!pessoa) {
     return (
@@ -42,9 +61,7 @@ export default function VisualizaPessoa() {
       }}
     >
       <Card
-        title={`Detalhes da ${
-          tipo === "PF" ? "Pessoa Física" : "Pessoa Jurídica"
-        }`}
+        title={`Detalhes da ${tipo === "PF" ? "Pessoa Física" : "Pessoa Jurídica"}`}
         bordered={false}
       >
         <Descriptions bordered column={1}>
@@ -52,9 +69,25 @@ export default function VisualizaPessoa() {
           <Descriptions.Item label="E-mail">{pessoa.email}</Descriptions.Item>
 
           {tipo === "PF" ? (
-            <Descriptions.Item label="CPF">{pessoa.cpf}</Descriptions.Item>
+            <>
+              <Descriptions.Item label="CPF">{pessoa.cpf}</Descriptions.Item>
+
+              {/* 🔹 Data de Nascimento */}
+              <Descriptions.Item label="Data de Nascimento">
+                {pessoa.dataNascimento}
+                  ? new Date(pessoa.dataNascimento).toLocaleDateString()
+                  : "Não informado" 
+              </Descriptions.Item>
+            </>
           ) : (
-            <Descriptions.Item label="CNPJ">{pessoa.cnpj}</Descriptions.Item>
+            <>
+              <Descriptions.Item label="CNPJ">{pessoa.cnpj}</Descriptions.Item>
+
+              {/* 🔹 Data de Registro da PJ */}
+              <Descriptions.Item label="Data de Registro">
+              {pessoa.ie.dataRegistro}
+              </Descriptions.Item>
+            </>
           )}
 
           {/* Endereço */}
@@ -87,7 +120,7 @@ export default function VisualizaPessoa() {
             <>
               <Descriptions.Item label="Inscrição Estadual">
                 {pessoa.ie?.numero
-                  ? `Nº ${pessoa.ie.numero} - ${pessoa.ie.estado} (${pessoa.ie.dataRegistro})`
+                  ? `Nº ${pessoa.ie.numero} - ${pessoa.ie.estado}`
                   : "Não informado"}
               </Descriptions.Item>
             </>
@@ -107,4 +140,6 @@ export default function VisualizaPessoa() {
       </Card>
     </div>
   );
+
 }
+
